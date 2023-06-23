@@ -1,20 +1,14 @@
 <%@page import="com.yedam.board.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>boardModify.jsp</title>
-</head>
-<body>
+<jsp:include page="Header.jsp"></jsp:include>
 
 	<%
 	BoardVO vo = (BoardVO) request.getAttribute("board");
 	%>
 	<h2>수정화면(boardModify.jsp)</h2>
 	<form action = "boardModify.do" method = "post">
-		<table border="1">
+		<table class ="table">
 			<tr>
 				<th>글번호</th><td><input readonly name="no" value="<%=vo.getBrdNo() %>"></td><th>조회수</th><td><%=vo.getClickCnt() %></td>
 			</tr>
@@ -42,6 +36,4 @@
 	
 	<br>
 	<a href="boardList.do">목록으로</a>
-
-</body>
-</html>
+<jsp:include page="Footer.jsp"></jsp:include>

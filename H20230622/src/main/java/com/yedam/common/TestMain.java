@@ -18,17 +18,17 @@ public class TestMain {
 //			System.out.println(vo.toString());
 //		}
 		
-//		수정하기
-		BoardVO vo = new BoardVO();
-//		vo.setBrdNo(436);
-		vo.setBrdTitle("수정테스트");
-		vo.setBrdWriter("휠체어");
-		vo.setBrdContent("수정내용");
+////		수정하기
+//		BoardVO vo = new BoardVO();
+////		vo.setBrdNo(436);
+//		vo.setBrdTitle("수정테스트");
+//		vo.setBrdWriter("휠체어");
+//		vo.setBrdContent("수정내용");
+//		
+//		System.out.println(service.addBoard(vo));
 		
-		System.out.println(service.addBoard(vo));
-		
-//		PageDTO dto = new PageDTO(3,service.totalCnt() );
-//		System.out.println(dto);
+		PageDTO dto = new PageDTO(3,service.totalCnt() );
+		System.out.println(dto);
 		
 		
 		

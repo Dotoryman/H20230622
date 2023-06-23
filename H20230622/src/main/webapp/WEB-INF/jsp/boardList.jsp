@@ -3,11 +3,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>WEB-INF/jsp/board.jsp</title>
+<jsp:include page="Header.jsp"></jsp:include>
+
 <style>
 .center {
   text-align: center;
@@ -45,7 +42,7 @@
 
  	<p><%=pg %></p>
 	<h1>게 시 판</h1>
-	<table border = '1'>
+	<table class="table">
 		<thead>
 			<tr>
 				<th>글번호</th>
@@ -102,5 +99,4 @@
 	<tr>
 	<a href="boardForm.do">글쓰기</a>
 	</tr>
-</body>
-</html>
+<jsp:include page="Footer.jsp"></jsp:include>

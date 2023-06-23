@@ -1,13 +1,7 @@
 <%@page import="com.yedam.board.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>boardOne.jsp</title>
-</head>
-<body>
+<jsp:include page="Header.jsp"></jsp:include>
 	<%
 	BoardVO vo = (BoardVO) request.getAttribute("board");
 	%>
@@ -19,24 +13,24 @@
 	<%
 	} else {
 	%>
-	<form action="modifyForm.do" method = "post">
+	<form action="modifyForm.do" name = "myFrm" method = "post">
 		<input type="hidden" name ="bno" value = "<%=vo.getBrdNo()%>">
 	<h2>상세화면(boardOne.jsp)</h2>
 	
-	<table border="1">
+	<table class ="table">
 		<tr>
 			<th>제목</th>
-			<td><input type="text" name="title"
+			<td><input type="text" name="title" readonly
 				value="<%=vo.getBrdTitle()%> "></td>
 		</tr>
 		<tr>
 			<th>작성자</th>
-			<td><input type="text" name="writer"
+			<td><input type="text" name="writer" readonly
 				value="<%=vo.getBrdWriter()%> "></td>
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td><textarea name="content" cols="30" rows="10"><%=vo.getBrdContent()%></textarea></td>
+			<td><textarea name="content" readonly cols="30" rows="10"><%=vo.getBrdContent()%></textarea></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
@@ -55,7 +49,7 @@
 	<a href="boardList.do">목록으로</a>
 	<script>
 		console.log(this);
-		document.querySelector('button[type="button"]').addEventListener('click', function(e) {
+		document.querySelector('form[name="myFrm"] button[type="button"]').addEventListener('click', function(e) {
 		console.log(e);
 		document.forms[0].action = "boardRemove.do";
 		document.forms[0].submit();
@@ -65,6 +59,4 @@
 		
 		});
 	</script>
-
-</body>
-</html>
+<jsp:include page="Footer.jsp"></jsp:include>
