@@ -53,6 +53,18 @@
 	%>
 	<br>
 	<a href="boardList.do">목록으로</a>
+	<script>
+		console.log(this);
+		document.querySelector('button[type="button"]').addEventListener('click', function(e) {
+		console.log(e);
+		document.forms[0].action = "boardRemove.do";
+		document.forms[0].submit();
+		
+		// 이거도 가능
+		// window.location.href = "boardRemove.do?bno=3"
+		
+		});
+	</script>
 
 </body>
 </html>

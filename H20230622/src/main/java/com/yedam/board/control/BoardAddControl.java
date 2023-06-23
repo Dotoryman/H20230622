@@ -22,7 +22,7 @@ public class BoardAddControl implements Controller {
 		if(wr.isEmpty() || tl.isEmpty() || ctn.isEmpty()) {
 			req.setAttribute("errorMsg", "필수값을 입력하시옹");
 			req.getRequestDispatcher("WEB-INF/jsp/boardForm.jsp").forward(req, resp);
-		}
+		} else {
 		
 		
 		BoardVO vo = new BoardVO();
@@ -39,5 +39,5 @@ public class BoardAddControl implements Controller {
 		
 		}
 	}
-
+	}
 }

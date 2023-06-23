@@ -153,7 +153,7 @@ public class BoardDAO {
 		}
 		return null;
 	}
-	
+	//조회수
 	public void clickCount(long brdNo) {
 		sql = "update tbl_board set click_cnt=click_cnt+1 where brd_no=?";
 		conn = DAO.getConnect();
@@ -168,6 +168,62 @@ public class BoardDAO {
 		}finally {
 			close();
 		}
+	}
+
+	//페이지 넘기기
+	public List<BoardVO> boardListPaging(int page) {
+		List<BoardVO> list = new ArrayList<>();
+		conn = DAO.getConnect();
+		sql = "select *\r\n"
+				+ "from (\r\n"
+				+ "    select rownum rn, a.*\r\n"
+				+ "    from (\r\n"
+				+ "        select *\r\n"
+				+ "        from tbl_board order by brd_no desc\r\n"
+				+ "        ) a\r\n"
+				+ "    ) b\r\n"
+				+ "where b.rn > (? -1) * 10\r\n"
+				+ "and b.rn <= ? * 10\r\n"
+				;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, page);
+			psmt.setInt(2, page);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				BoardVO vo = new BoardVO();
+				vo.setBrdContent(rs.getString("brd_content"));
+				vo.setBrdNo(rs.getLong("brd_no"));
+				vo.setBrdTitle(rs.getString("brd_title"));
+				vo.setBrdWriter(rs.getString("brd_writer"));
+				vo.setClickCnt(rs.getInt("click_cnt"));
+				vo.setCreateDate(rs.getDate("create_date"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
+	}
+	
+	//전체 건수 계산
+	public int getTotalCnt() {
+		conn = DAO.getConnect();
+		sql = "select count(1) from tbl_board";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			rs.next();
+			int cnt = rs.getInt(1);
+			return cnt;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return 0;
 	}
 
 }
