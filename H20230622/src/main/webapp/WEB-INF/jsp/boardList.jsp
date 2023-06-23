@@ -13,7 +13,7 @@
 	List<BoardVO> list = (List<BoardVO>) request.getAttribute("list"); //list = dao.list();
 %>
 
-
+ 
 	<h1>게 시 판</h1>
 	<table border = '1'>
 		<thead>
@@ -38,5 +38,6 @@
 			%>
 		</tbody>
 	</table>
+	<a href="boardForm.do">글쓰기</a>
 </body>
 </html>

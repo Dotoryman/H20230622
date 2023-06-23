@@ -19,30 +19,40 @@
 	<%
 	} else {
 	%>
+	<form action="modifyForm.do" method = "post">
+		<input type="hidden" name ="bno" value = "<%=vo.getBrdNo()%>">
+	<h2>상세화면(boardOne.jsp)</h2>
+	
 	<table border="1">
 		<tr>
 			<th>제목</th>
-			<td><input type="text" name="title" value ="<%=vo.getBrdTitle() %> "></td>
-			</tr>
-			<tr>
-			<th>작성자</th>
-			<td><input type="text" name="writer"value ="<%=vo.getBrdWriter() %> "></td>
-			</tr>
-			<tr>
-			<th>내용</th>
-			<td><textarea name="content" cols="30" rows="10"><%=vo.getBrdContent() %></textarea></td>
+			<td><input type="text" name="title"
+				value="<%=vo.getBrdTitle()%> "></td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit" value="저장"> <input
-				type="reset" value="초기화"></td>
+			<th>작성자</th>
+			<td><input type="text" name="writer"
+				value="<%=vo.getBrdWriter()%> "></td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td><textarea name="content" cols="30" rows="10"><%=vo.getBrdContent()%></textarea></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+			<button type="submit">수정</button>
+			<button type="button">삭제</button>
+			 </td>
 		</tr>
 
 
 	</table>
+</form>
 	<%
 	}
 	%>
-
+	<br>
+	<a href="boardList.do">목록으로</a>
 
 </body>
 </html>

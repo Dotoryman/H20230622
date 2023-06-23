@@ -19,7 +19,7 @@ public class BoardAddControl implements Controller {
 		String tl =req.getParameter("title");
 		String ctn =req.getParameter("content");
 
-		if(wr == null || tl == null || ctn == null) {
+		if(wr.isEmpty() || tl.isEmpty() || ctn.isEmpty()) {
 			req.setAttribute("errorMsg", "필수값을 입력하시옹");
 			req.getRequestDispatcher("WEB-INF/jsp/boardForm.jsp").forward(req, resp);
 		}
@@ -35,6 +35,8 @@ public class BoardAddControl implements Controller {
 			resp.sendRedirect("boardList.do");
 		} else {
 			resp.sendRedirect("addBoard.do");
+			
+		
 		}
 	}
 
