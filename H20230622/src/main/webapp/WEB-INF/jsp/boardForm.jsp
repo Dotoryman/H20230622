@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 	<jsp:include page="Header.jsp"></jsp:include>
 	<%
 		String msg = (String)request.getAttribute("errorMsg");
@@ -23,18 +24,16 @@
             <tr>            
             <th>작성자</th>
             <td>
-            <%
-            	if (logId == null){
-            %>
-                <input type = "text" name = "writer">
-            <%
-            	} else {
-            %>
-                <input type = "text" name = "writer" value="<%=logId %>" readonly>
-            <%
-            	}
-            %>
-                       
+            <c:choose>
+	            <c:when test="${empty loginId }">
+	            	<input type = "text" name = "writer">
+	            </c:when>
+	            <c:otherwise>
+	            	<input type = "text" name = "writer" value="${loginId}" readonly>
+	            </c:otherwise>
+            
+            </c:choose>
+
             </td>
             </tr>
             <tr>
@@ -44,18 +43,16 @@
         
         <tr>
             <td colspan="2">
-            <%
-            	if (logId == null){
-            %>
-                <input type="submit" value="저장" disabled>
-                <%
-            	} else {
-                %>
-                <input type="submit" value="저장">
-                <%
-            	}
-                %>
-                <input type="reset" value="초기화">
+            <c:choose>
+            	<c:when test="${empty loginId }">
+            		<input type="submit" value="저장" disabled>
+            	</c:when>
+            	<c:otherwise>
+            		<input type="submit" value="저장">
+            	</c:otherwise>
+            </c:choose>
+            <input type="reset" value="초기화">
+
             </td>
         </tr>
         <tr>

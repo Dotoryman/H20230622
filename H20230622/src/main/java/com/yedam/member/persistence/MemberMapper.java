@@ -7,5 +7,6 @@ import com.yedam.member.vo.MemberVO;
 public interface MemberMapper {
 	public MemberVO login(@Param("id") String id, @Param("pw")String pw);
 	public int insert(MemberVO member);
-	
+	public MemberVO search(MemberVO member);
+	public int modiMember(MemberVO vo);
 }

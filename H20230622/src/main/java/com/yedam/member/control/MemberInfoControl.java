@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.yedam.common.Controller;
+import com.yedam.member.service.MemberService;
+import com.yedam.member.service.MemberServiceImpl;
 import com.yedam.member.vo.MemberVO;
 
 public class MemberInfoControl implements Controller {
@@ -20,26 +22,15 @@ public class MemberInfoControl implements Controller {
 		HttpSession session = req.getSession();
 		String id = (String) session.getAttribute("loginId");
 		
-		
+		MemberService service = new MemberServiceImpl();
 		//service(getMember) /mapper(select) / jsp 등록
-		MemberVO member = new MemberVO();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		MemberVO member = service.getMember(id);
+	
 		
 		
 		req.setAttribute("info", member);
 		
-		req.getRequestDispatcher("WEB-INF/jsp/member/memberInfo").forward(req, resp);
+		req.getRequestDispatcher("WEB-INF/jsp/member/infoForm.jsp").forward(req, resp);
 	}
 
 }
