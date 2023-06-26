@@ -4,6 +4,7 @@
 <jsp:include page="Header.jsp"></jsp:include>
 	<%
 	BoardVO vo = (BoardVO) request.getAttribute("board");
+	String logId = (String) session.getAttribute("loginId");
 	%>
 
 	<%
@@ -34,8 +35,20 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
-			<button type="submit">수정</button>
-			<button type="button">삭제</button>
+		    <%
+            	if (logId.equals(vo.getBrdWriter())){
+            %>
+                <button type="submit">수정</button>
+				<button type="button">삭제</button>
+            <%
+            	} else {
+            %>
+                <button type="submit" disabled>수정</button>
+		  		<button type="button" disabled>삭제</button>
+            <%
+            	}
+            %>
+			
 			 </td>
 		</tr>
 

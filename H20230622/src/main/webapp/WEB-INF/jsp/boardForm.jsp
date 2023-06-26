@@ -3,6 +3,7 @@
 	<jsp:include page="Header.jsp"></jsp:include>
 	<%
 		String msg = (String)request.getAttribute("errorMsg");
+		String logId = (String) session.getAttribute("loginId");
 	%>
 	<%
 		if(msg != null){
@@ -21,7 +22,20 @@
             </tr>
             <tr>            
             <th>작성자</th>
-            <td><input type = "text" name = "writer"></td>
+            <td>
+            <%
+            	if (logId == null){
+            %>
+                <input type = "text" name = "writer">
+            <%
+            	} else {
+            %>
+                <input type = "text" name = "writer" value="<%=logId %>" readonly>
+            <%
+            	}
+            %>
+                       
+            </td>
             </tr>
             <tr>
             <th>내용</th>
@@ -30,7 +44,17 @@
         
         <tr>
             <td colspan="2">
+            <%
+            	if (logId == null){
+            %>
+                <input type="submit" value="저장" disabled>
+                <%
+            	} else {
+                %>
                 <input type="submit" value="저장">
+                <%
+            	}
+                %>
                 <input type="reset" value="초기화">
             </td>
         </tr>
