@@ -70,7 +70,7 @@
 		</c:if>
 	
 
-	<c:forEach begin="${page.startPage }" end="${page.endPage }" var="i">S
+	<c:forEach begin="${page.startPage }" end="${page.endPage }" var="i">
 	<c:choose>
 	<c:when test="${i == curPage }">
 	<a href="boardList.do?page=${i }" class="active"> <c:out value="${i }"/> </a>
@@ -82,7 +82,7 @@
 	</c:forEach>
 	
 	<c:if test="${page.next }">
-		<a href="board.List.do?page=${page.endPage +1 }"> next</a>
+		<a href="boardList.do?page=${page.endPage +1 }"> next</a>
 	</c:if>
 	</div>
 	</div>
